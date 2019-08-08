@@ -84,4 +84,15 @@ class BankController extends Controller
     {
         //
     }
+
+    public function status(Request $request)
+    {
+        $bank = Bank::find($request->id);
+        $bank->status = $request->status;
+        $bank->save();
+  
+        return response()->json([
+            'success' => 'Status berhasil diubah'
+        ]);
+    }
 }
