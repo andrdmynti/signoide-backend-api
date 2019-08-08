@@ -29,7 +29,7 @@ class UpdateUsersTable001 extends Migration
             $table->string('dimension')->nullable()->after('path');
             $table->string('role_id')->nullabe()->after('dimension');
             $table->string('token')->nullable()->after('role_id');
-            $table->integer('is_active')->nullable()->after('token');
+            $table->integer('is_active')->nullable()->after('token')->default(0);
             $table->timestamp('deleted_at')->nullable()->after('updated_at');            
         });
     }
