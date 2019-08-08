@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/dashboard', function () {
+//     return view('admin.dashboard');
+// });
+
+Route::get('/noide-admin/', function () {
+    return view('admin.login');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard.index');
