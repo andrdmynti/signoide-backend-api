@@ -6,6 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <form action="{{ route('bank.store') }}" method="post" class="was-validate">
+                @csrf
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -40,8 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12" align="right">
-                        <button type="button" class="btn btn-primary btn-sm">
-                            {{-- <i class="fas fa-plus"></i> --}}
+                        <button type="submit" class="btn btn-primary btn-sm">
                             Submit
                         </button>
                     </div>
