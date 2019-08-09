@@ -1,6 +1,17 @@
 @extends('template.admin')
 @section('konten')
-    <h1 class="h3 mb-2 text-gray-800">Bank</h1>
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Managemen Bank</h1>
+    </div>
+    <div class="row">
+        
+        {{-- <div class="col-sm-6">
+            <ol class="breadcrumb">
+                <li><a href="{{ url ('/dashboard')}}"><i class="fas fa-fw fa-dashboard"></i> Home</a></li>
+                <li class="active"><i class="fa fa-credit-card"></i> Bank</li>
+            </ol>
+        </div> --}}
+    </div>
     <div class="card shadow mb-4">
         <div class="card-body">
             <br>
