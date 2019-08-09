@@ -11,15 +11,17 @@
 |
 */
 
-// Route::get('/dashboard', function () {
-//     return view('admin.dashboard');
-// });
-
-Route::get('/noide-admin/', function () {
+Route::get('/noide-admin', function () {
     return view('admin.login');
 });
 
 Auth::routes();
 
-// Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'HomeController@index')->name('dashboard.index');
+Route::get('/home', 'HomeController@index')->name('dashboard.index')->middleware('auth');
+
+Route::prefix('bank')->group(function(){
+    Route::get('list', 'Bank\Controller\BankController@index')->name('bank.list');
+    Route::get('create', 'Bank\Controller\BankController@create')->name('bank.create');
+    Route::post('store', 'Bank\Controller\BankController@store')->name('bank.store');
+    Route::get('status', 'Bank\Controller\BankController@status')->name('bank.status');
+});
