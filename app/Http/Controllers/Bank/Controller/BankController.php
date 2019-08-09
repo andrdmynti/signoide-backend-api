@@ -37,7 +37,26 @@ class BankController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $this->validate($request, [
+                'nama_bank' => 'required',
+                'no_rek' => 'required|unique:bank',
+                'cabang' => 'required',
+                'atas_nama' => 'required'
+            ]);
+    
+            Bank::create([
+                'nama_bank' => $request->nama_bank,
+                'no_rek' => $request->no_rek,
+                'cabang' => $request->cabang,
+                'atas_nama' => $request->atas_nama,
+            ]);
+    
+            return redirect()->route('bank.list');
+            
+        } catch (Exception $e) {
+            $e->getMessage()." ".$e->getFile()." ".$e->getLine();
+        }
     }
 
     /**
