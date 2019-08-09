@@ -17,7 +17,54 @@
 
   <!-- Custom styles for this template-->
   <link href="{{asset('assets/admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+  {{-- datatables --}}
+  <link href="{{asset('assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+  <style>
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 9999;
+      background-color: #fff;
+      opacity: 0.5;
+    }
 
+    .preloader .loading {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font: 14px arial;
+    }
+
+    .error {
+      color: red;
+    }
+
+    .btn-default.btn-on.active{
+      background-color: #5BB75B;
+      color: white;
+    }
+
+    .btn-default.btn-off.active{
+      background-color: #DA4F49;
+      color: white;
+    }
+
+    .menu-aktif {
+      background: #1e282c !important;
+    }
+
+    .menu-aktif a {
+      color: #fff !important;
+    }
+
+    .menu-aktif2 a {
+      color: #fff !important;
+    }
+  </style>
 </head>
 
 <body id="page-top">
@@ -29,11 +76,14 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/dashboard')}}">
-        <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home')}}">
+        {{-- rotasi 15 derajat --}}
+        {{-- <div class="sidebar-brand-icon rotate-n-15"> --}}
+        <div class="sidebar-brand-icon">
+          {{-- <i class="fas fa-laugh-wink"></i> --}}
+          <img height="50vw" width="50vw" src="{{ asset('images/pp.jpeg') }}">
         </div>
-        <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">noide.sign</div>
       </a>
 
       {{-- SIDEBAR --}}
@@ -56,7 +106,7 @@
           </button>
 
           <!-- Topbar Search -->
-          <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+          {{-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
             <div class="input-group">
               <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
               <div class="input-group-append">
@@ -65,7 +115,7 @@
                 </button>
               </div>
             </div>
-          </form>
+          </form> --}}
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
@@ -200,7 +250,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -243,7 +293,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; noide.sign 2019 | beta version</span>
           </div>
         </div>
       </footer>
@@ -295,7 +345,13 @@
   <!-- Page level custom scripts -->
   <script src="{{asset('assets/admin/js/demo/chart-area-demo.js')}}"></script>
   <script src="{{asset('assets/admin/js/demo/chart-pie-demo.js')}}"></script>
+  
+  <!-- Page level plugins -->
+  <script src="{{asset('assets/admin/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('assets/admin/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
+  <!-- Page level custom scripts -->
+  <script src="{{asset('assets/admin/js/demo/datatables-demo.js')}}"></script>
 </body>
 
 </html>
