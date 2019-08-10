@@ -1,12 +1,13 @@
 @extends('template.admin')
 @section('konten')
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Tambah Data Bank</h1>
+        <h1 class="h3 mb-0 text-gray-800">Edit Data Bank</h1>
     </div>
     <div class="card shadow mb-4">
         <div class="card-body">
-            <form action="{{ route('bank.store') }}" method="post" class="was-validate">
-                <input value="{{ $bank->id }}" name="id" hidden>
+            <form action="{{ route('bank.update', $bank->id) }}" method="post" class="was-validate">
+                {{ csrf_field() }}
+                {{-- <input value="{{ $bank->id }}" name="id" hidden> --}}
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group">
@@ -41,7 +42,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12" align="right">
-                        <button type="button" class="btn btn-primary btn-sm">
+                        <button type="submit" class="btn btn-primary btn-sm">
                             Submit
                         </button>
                     </div>
