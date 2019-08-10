@@ -25,6 +25,6 @@ Route::prefix('bank')->group(function(){
     Route::post('store', 'Bank\Controller\BankController@store')->name('bank.store');
     Route::get('show/{id}', 'Bank\Controller\BankController@show')->name('bank.show');
     Route::get('edit/{id}', 'Bank\Controller\BankController@edit')->name('bank.edit');
-    Route::get('update/{id}', 'Bank\Controller\BankController@update')->name('bank.update');
+    Route::post('update/{id}', 'Bank\Controller\BankController@update')->name('bank.update');
     Route::get('status', 'Bank\Controller\BankController@status')->name('bank.status');
 });
