@@ -53,7 +53,7 @@ class BankController extends Controller
             ]);
     
             return redirect()->route('bank.list');
-            
+
         } catch (Exception $e) {
             $e->getMessage()." ".$e->getFile()." ".$e->getLine();
         }
@@ -67,7 +67,8 @@ class BankController extends Controller
      */
     public function show($id)
     {
-        //
+        $bank = Bank::where('id', $id)->first();
+        return view('bank.show', compact('bank'));
     }
 
     /**
@@ -78,7 +79,8 @@ class BankController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bank = Bank::where('id',$id)->first();
+        return view('bank.update', compact('bank'));
     }
 
     /**
@@ -90,7 +92,26 @@ class BankController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $this->validate($request, [
+                'nama_bank' => 'required',
+                'no_rek' => 'required|unique:bank',
+                'cabang' => 'required',
+                'atas_nama' => 'required'
+            ]);
+    
+            Bank::where('id', $id)->update([
+                'nama_bank' => $request->nama_bank,
+                'no_rek' => $request->no_rek,
+                'cabang' => $request->cabang,
+                'atas_nama' => $request->atas_nama,
+            ]);
+    
+            return redirect()->route('bank.list');
+
+        } catch (Exception $e) {
+            $e->getMessage()." ".$e->getFile()." ".$e->getLine();
+        }
     }
 
     /**
