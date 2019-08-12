@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
 Route::prefix('v1')->group(function () {
     Route::prefix('wilayah')->group(function() {
         Route::get('provinsi', 'Wilayah\Service\WilayahService@provinsi');
@@ -25,4 +21,17 @@ Route::prefix('v1')->group(function () {
         Route::get('kelurahan', 'Wilayah\Service\WilayahService@kelurahan');
     });
 
+    Route::prefix('user')->group(function(){
+        Route::post('register', 'User\Service\UserService@register');
+    });
+
+    Route::prefix('bank')->group(function(){
+        Route::get('list', 'Bank\Service\BankService@index');
+    });
+    // Route::middleware('auth:api')->get('/user', function (Request $request) {
+    //     return $request->user();
+    // });
+    Route::group(['middleware' => 'auth:api'], function () {
+
+    });
 });

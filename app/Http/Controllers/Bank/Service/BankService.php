@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Bank\Service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Bank;
 
 class BankService extends Controller
 {
@@ -14,7 +15,25 @@ class BankService extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $data = Bank::where('status', 1)->get();
+            if (count($data)) {
+                $message = 'Data Ditemukan.';
+                $code = 200;
+            } else {
+                $message = 'Data Tidak Ditemukan.';
+                $code = 404;
+            }
+
+        } catch(\Exception $e){
+            \Log::error($e, ['Failed to get data Bank' => $e->getMessage()." ".$e->getFile()." ".$e->getLine()]);
+        }
+
+        return response()->JSON([
+            'message' => $message,
+            'data' => $data,
+            'status_code' => $code
+        ]);
     }
 
     /**
