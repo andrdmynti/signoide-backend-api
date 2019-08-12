@@ -6,7 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <form action="{{ route('bank.update', $bank->id) }}" method="post" class="was-validate">
-                {{ csrf_field() }}
+                @csrf
                 {{-- <input value="{{ $bank->id }}" name="id" hidden> --}}
                 <div class="row">
                     <div class="col-sm-6">
