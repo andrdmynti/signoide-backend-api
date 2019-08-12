@@ -95,7 +95,7 @@ class BankController extends Controller
         try {
             $this->validate($request, [
                 'nama_bank' => 'required',
-                'no_rek' => 'required|unique:bank',
+                'no_rek' => 'required|unique:bank,no_rek,'.$id,
                 'cabang' => 'required',
                 'atas_nama' => 'required'
             ]);
@@ -107,11 +107,10 @@ class BankController extends Controller
                 'atas_nama' => $request->atas_nama,
             ]);
     
-            return redirect()->route('bank.list');
-
-        } catch (Exception $e) {
+        } catch (\Exception $e){
             $e->getMessage()." ".$e->getFile()." ".$e->getLine();
         }
+        return redirect()->route('bank.list');
     }
 
     /**
