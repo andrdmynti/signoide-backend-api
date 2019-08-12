@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/', function(){
+    // return view('');
+    return ('Page User');
+});
+
 Route::get('/noide-admin', function () {
     return view('admin.login');
 });
