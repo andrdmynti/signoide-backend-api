@@ -33,3 +33,13 @@ Route::prefix('bank')->group(function(){
     Route::post('update/{id}', 'Bank\Controller\BankController@update')->name('bank.update');
     Route::get('status', 'Bank\Controller\BankController@status')->name('bank.status');
 });
+
+Route::prefix('jenis')->group(function(){
+    Route::get('list', 'Jenis\Controller\JenisController@index')->name('jenis.list');    
+    Route::get('create', 'Jenis\Controller\JenisController@create')->name('jenis.create');    
+    Route::post('store', 'Jenis\Controller\JenisController@store')->name('jenis.store');  
+    Route::get('show/{id}', 'Jenis\Controller\JenisController@show')->name('jenis.show'); 
+    Route::get('edit/{id}', 'Jenis\Controller\JenisController@edit')->name('jenis.edit'); 
+    Route::post('update/{id}', 'Jenis\Controller\JenisController@update')->name('jenis.update'); 
+    Route::get('status', 'Jenis\Controller\JenisController@status')->name('jenis.status');
+});
