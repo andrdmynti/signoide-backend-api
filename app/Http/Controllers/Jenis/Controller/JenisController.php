@@ -51,7 +51,6 @@ class JenisController extends Controller
         } catch (\Exception $e){
             $e->getMessage()." ".$e->getFile()."".$e->getLine();
         }
-
         return redirect()->route('jenis.list');
     }
 
