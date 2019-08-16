@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Jenis\Controller;
+namespace App\Http\Controllers\Ukuran\Controller;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Jenis;
+use App\Ukuran;
 
-class JenisController extends Controller
+class UkuranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class JenisController extends Controller
      */
     public function index()
     {
-        $jenis = Jenis::where('deleted_at',null)->get();
-        return view('jenis.index', compact('jenis'));
+        $ukuran = Ukuran::where('deleted_at', null)->get();
+        return view('ukuran.index', compact('ukuran'));
     }
 
     /**
@@ -26,7 +26,7 @@ class JenisController extends Controller
      */
     public function create()
     {
-        return view('jenis.create');
+        return view('ukuran.create');
     }
 
     /**
@@ -37,21 +37,22 @@ class JenisController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+        try {
             $this->validate($request, [
-                'jenis'  => 'required|unique:jenis',
+                'ukuran'  => 'required|unique:ukuran',
                 'detail' => 'required',
             ]);
 
-            Jenis::create([
-                'jenis'  => $request->jenis,
-                'detail' => $request->detail,
+            Ukuran::create([
+                'ukuran' => $request->ukuran,
+                'detail' => $request->detail
             ]);
-            
-        } catch (\Exception $e){
+
+        } catch(\Exception $e){
             $e->getMessage()." ".$e->getFile()."".$e->getLine();
         }
-        return redirect()->route('jenis.list');
+
+        return redirect()->route('ukuran.list');
     }
 
     /**
@@ -62,8 +63,8 @@ class JenisController extends Controller
      */
     public function show($id)
     {
-        $jenis = Jenis::where('id', $id)->first();
-        return view('jenis.show', compact('jenis'));
+        $ukuran = Ukuran::where('id', $id)->first();
+        return view('ukuran.show',compact('ukuran'));
     }
 
     /**
@@ -74,8 +75,8 @@ class JenisController extends Controller
      */
     public function edit($id)
     {
-        $jenis = Jenis::where('id', $id)->first();
-        return view('jenis.update',compact('jenis'));
+        $ukuran = Ukuran::where('id',$id)->first();
+        return view('ukuran.update', compact('ukuran'));
     }
 
     /**
@@ -87,22 +88,21 @@ class JenisController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
+        try {
             $this->validate($request, [
-                'jenis'  => 'required|unique:jenis',
+                'ukuran'  => 'required|unique:ukuran',
                 'detail' => 'required',
             ]);
 
-            Jenis::where('id', $id)->update([
-                'jenis'  => $request->jenis,
-                'detail' => $request->detail,
+            Ukuran::where('id',$id)->update([
+                'ukuran' => $request->ukuran,
+                'detail' => $request->detail
             ]);
-            
-        } catch (\Exception $e){
-            $e->getMessage()." ".$e->getFile()."".$e->getLine();
+        } catch (\Exception $e) {
+            $e->getMessage()." ".$e->getFile()."".$e->getLine();            
         }
 
-        return redirect()->route('jenis.list');
+        return redirect()->route('ukuran.list');
     }
 
     /**
@@ -114,16 +114,5 @@ class JenisController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function status(Request $request)
-    {
-        $jenis = Jenis::find($request->id);
-        $jenis->status = $request->status;
-        $jenis->save();
-  
-        return response()->json([
-            'success' => 'Status berhasil diubah'
-        ]);
     }
 }

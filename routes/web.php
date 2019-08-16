@@ -43,3 +43,12 @@ Route::prefix('jenis')->group(function(){
     Route::post('update/{id}', 'Jenis\Controller\JenisController@update')->name('jenis.update'); 
     Route::get('status', 'Jenis\Controller\JenisController@status')->name('jenis.status');
 });
+
+Route::prefix('ukuran')->group(function(){
+    Route::get('list', 'Ukuran\Controller\UkuranController@index')->name('ukuran.list');
+    Route::get('create', 'Ukuran\Controller\UkuranController@create')->name('ukuran.create');
+    Route::post('store', 'Ukuran\Controller\UkuranController@store')->name('ukuran.store');
+    Route::get('show/{id}', 'Ukuran\Controller\UkuranController@show')->name('ukuran.show');
+    Route::get('edit/{id}', 'Ukuran\Controller\UkuranController@edit')->name('ukuran.edit');
+    Route::post('update/{id}', 'Ukuran\Controller\UkuranController@update')->name('ukuran.update');
+});
