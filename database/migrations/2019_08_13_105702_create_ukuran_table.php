@@ -15,17 +15,17 @@ class CreateUkuranTable extends Migration
     {
         Schema::create('ukuran', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nama_ukuran')->nullable();
-            $table->string('detail_ukuran')->nullable();
+            $table->string('ukuran')->nullable();
+            $table->string('detail')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });
     }
 
     /**
+     * @return void
      * Reverse the migrations.
      *
-     * @return void
      */
     public function down()
     {
